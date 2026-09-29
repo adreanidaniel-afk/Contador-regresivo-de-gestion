@@ -1,0 +1,108 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cuenta regresiva</title>
+<style>
+  body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #101827;
+    color: white;
+    font-family: Arial, sans-serif;
+    text-align: center;
+  }
+  .contenedor {
+    padding: 30px 15px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  h1 { color: #fca311; font-size: 28px; }
+  h2 { font-weight: normal; }
+  .reloj {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 35px;
+  }
+  .unidad {
+    background: #23395d;
+    border-radius: 14px;
+    padding: 20px 12px;
+    min-width: 75px;
+  }
+  .numero {
+    font-size: clamp(32px, 8vw, 60px);
+    font-weight: bold;
+  }
+  .etiqueta {
+    margin-top: 8px;
+    font-size: 13px;
+    color: #cbd5e1;
+  }
+  p { color: #cbd5e1; margin-top: 35px; }
+</style>
+</head>
+<body>
+<div class="contenedor">
+  <h1>⏳ CUENTA REGRESIVA</h1>
+  <h2>Hasta el 1 de mayo de 2027</h2>
+
+  <div class="reloj">
+    <div class="unidad">
+      <div class="numero" id="dias">0</div>
+      <div class="etiqueta">DÍAS</div>
+    </div>
+    <div class="unidad">
+      <div class="numero" id="horas">00</div>
+      <div class="etiqueta">HORAS</div>
+    </div>
+    <div class="unidad">
+      <div class="numero" id="minutos">00</div>
+      <div class="etiqueta">MINUTOS</div>
+    </div>
+    <div class="unidad">
+      <div class="numero" id="segundos">00</div>
+      <div class="etiqueta">SEGUNDOS</div>
+    </div>
+  </div>
+  <p id="mensaje">Cada segundo cuenta...</p>
+</div>
+
+<script>
+  function actualizar() {
+    // Medianoche de Argentina, UTC-3
+    const objetivo = Date.UTC(2027, 4, 1, 3, 0, 0);
+    const ahora = Date.now();
+    let restante = Math.max(0, objetivo - ahora);
+
+    if (restante === 0) {
+      document.getElementById("mensaje").textContent =
+        "🎉 ¡Llegó el día!";
+    }
+
+    const dias = Math.floor(restante / 86400000);
+    const horas = Math.floor((restante % 86400000) / 3600000);
+    const minutos = Math.floor((restante % 3600000) / 60000);
+    const segundos = Math.floor((restante % 60000) / 1000);
+
+    document.getElementById("dias").textContent = dias;
+    document.getElementById("horas").textContent =
+      String(horas).padStart(2, "0");
+    document.getElementById("minutos").textContent =
+      String(minutos).padStart(2, "0");
+    document.getElementById("segundos").textContent =
+      String(segundos).padStart(2, "0");
+  }
+
+  actualizar();
+  setInterval(actualizar, 1000);
+</script>
+</body>
+</html>
