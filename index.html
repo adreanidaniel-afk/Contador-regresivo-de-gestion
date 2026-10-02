@@ -85,7 +85,36 @@ h2 {
   font-weight: normal;
   color: #dbeafe;
   letter-spacing: 1px;
+  opacity: 0;
+  animation: aparecerTexto 3s ease-out 0.8s forwards;
 }
+
+@keyframes aparecerTexto {
+  0% {
+    opacity: 0;
+    transform: translateY(12px);
+    text-shadow: 0 0 0 transparent;
+  }
+
+  60% {
+    opacity: 0.6;
+    transform: translateY(3px);
+    text-shadow: 0 0 12px rgba(56, 189, 248, 0.4);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    text-shadow: 0 0 14px rgba(56, 189, 248, 0.25);
+  }
+}
+
+@keyframes aparecerTexto {
+  0% {
+    opacity: 0;
+    transform: translateY(12px);
+    text-shadow: 0 0 0 transparent;
+  }
 
 /* CONTADOR */
 .reloj {
