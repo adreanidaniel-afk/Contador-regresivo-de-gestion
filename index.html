@@ -6,6 +6,79 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Cuenta regresiva | 2027</title>
 
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(ellipse at 15% 20%,
+      rgba(0,140,255,.24), transparent 42%),
+    radial-gradient(ellipse at 85% 80%,
+      rgba(0,75,180,.22), transparent 45%),
+    linear-gradient(135deg,#030712,#071a35 55%,#020617);
+  color: white;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  overflow-x: hidden;
+}
+
+/* FONDO ANIMADO */
+#particulas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* TABLERO PRINCIPAL */
+.contenedor {
+  position: relative;
+  z-index: 1;
+  padding: 45px 20px;
+  width: calc(100% - 32px);
+  max-width: 1000px;
+  margin: 20px;
+  background: rgba(7,20,42,.80);
+  border: 1px solid rgba(56,189,248,.5);
+  border-radius: 24px;
+  box-shadow:
+    0 0 25px rgba(0,153,255,.2),
+    0 0 65px rgba(0,153,255,.12),
+    inset 0 0 35px rgba(0,140,255,.08);
+  backdrop-filter: blur(10px);
+  animation: entrada 1.2s ease-out;
+}
+
+@keyframes entrada {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* TITULO NEON */
+h1 {
+  color: #38bdf8;
+  font-size: clamp(24px,5vw,40px);
+  letter-spacing: 4px;
+  text-shadow:
+    0 0 5px #38bdf8,
+    0 0 15px #0ea5e9,
+    0 0 35px rgba(14,165,233,.85);
+}
 
 /* INDICADOR DE SISTEMA ACTIVO */
 .estado-sistema {
@@ -47,80 +120,6 @@
       0 0 2px #22c55e,
       0 0 7px rgba(34,197,94,.4);
   }
-}
-
-<style>
-* {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background:
-    radial-gradient(ellipse at 15% 20%,
-      rgba(0,140,255,.24), transparent 42%),
-    radial-gradient(ellipse at 85% 80%,
-      rgba(0,75,180,.22), transparent 45%),
-    linear-gradient(135deg,#030712,#071a35 55%,#020617);
-  color: white;
-  font-family: Arial, sans-serif;
-  text-align: center;
-  overflow-x: hidden;
-}
-
-/* FONDO ANIMADO */
-#particulas {
-  position: fixed;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-  pointer-events: none;
-}
-
-/* TABLERO */
-.contenedor {
-  position: relative;
-  z-index: 1;
-  padding: 45px 20px;
-  width: calc(100% - 32px);
-  max-width: 1000px;
-  margin: 20px;
-  background: rgba(7,20,42,.80);
-  border: 1px solid rgba(56,189,248,.5);
-  border-radius: 24px;
-  box-shadow:
-    0 0 25px rgba(0,153,255,.2),
-    0 0 65px rgba(0,153,255,.12),
-    inset 0 0 35px rgba(0,140,255,.08);
-  backdrop-filter: blur(10px);
-  animation: entrada 1.2s ease-out;
-}
-
-@keyframes entrada {
-  from {
-    opacity: 0;
-    transform: translateY(18px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* TITULO NEON */
-h1 {
-  color: #38bdf8;
-  font-size: clamp(24px,5vw,40px);
-  letter-spacing: 4px;
-  text-shadow:
-    0 0 5px #38bdf8,
-    0 0 15px #0ea5e9,
-    0 0 35px rgba(14,165,233,.85);
 }
 
 /* SUBTITULO CON APARICION LENTA */
@@ -179,14 +178,20 @@ h2 {
     inset 0 0 18px rgba(56,189,248,.09);
   transition:
     box-shadow .3s ease,
-    border-color .3s ease;
+    border-color .3s ease,
+    transform .3s ease;
 }
 
-.unidad:hover {
+/* NEON AL PASAR EL MOUSE O TOCAR */
+.unidad:hover,
+.unidad:active {
   border-color: #7dd3fc;
+  transform: translateY(-3px);
   box-shadow:
-    0 0 20px rgba(56,189,248,.4),
-    0 0 40px rgba(0,153,255,.2);
+    0 0 20px rgba(56,189,248,.55),
+    0 0 40px rgba(0,153,255,.35),
+    0 0 65px rgba(0,153,255,.18),
+    inset 0 0 22px rgba(56,189,248,.15);
 }
 
 /* NUMEROS */
@@ -298,7 +303,13 @@ h2 {
 <canvas id="particulas"></canvas>
 
 <main class="contenedor">
+
   <h1>⏳ CUENTA REGRESIVA</h1>
+
+  <div class="estado-sistema">
+    <span class="punto-activo"></span>
+    <span>SISTEMA ACTIVO</span>
+  </div>
 
   <h2>Hasta el 1 de mayo de 2027</h2>
 
@@ -331,6 +342,7 @@ h2 {
   <div class="pie">
     SISTEMA DE CUENTA REGRESIVA // 2027
   </div>
+
 </main>
 
 <script>
@@ -403,7 +415,9 @@ let cantidad = 65;
 
 const movimientoReducido =
   window.matchMedia &&
-  window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
 
 function ajustarCanvas() {
   const dpr = Math.min(window.devicePixelRatio || 1, 2);
