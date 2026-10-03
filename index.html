@@ -7,9 +7,7 @@
 <title>Cuenta regresiva | 2027</title>
 
 <style>
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
   margin: 0;
@@ -29,7 +27,6 @@ body {
   overflow-x: hidden;
 }
 
-/* FONDO ANIMADO */
 #particulas {
   position: fixed;
   inset: 0;
@@ -39,7 +36,6 @@ body {
   pointer-events: none;
 }
 
-/* TABLERO PRINCIPAL */
 .contenedor {
   position: relative;
   z-index: 1;
@@ -56,20 +52,14 @@ body {
     inset 0 0 35px rgba(0,140,255,.08);
   backdrop-filter: blur(10px);
   animation: entrada 1.2s ease-out;
+  transition: box-shadow .8s ease;
 }
 
 @keyframes entrada {
-  from {
-    opacity: 0;
-    transform: translateY(18px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-/* TITULO NEON */
 h1 {
   color: #38bdf8;
   font-size: clamp(24px,5vw,40px);
@@ -80,7 +70,6 @@ h1 {
     0 0 35px rgba(14,165,233,.85);
 }
 
-/* INDICADOR DE SISTEMA ACTIVO */
 .estado-sistema {
   display: flex;
   justify-content: center;
@@ -109,20 +98,15 @@ h1 {
   0%, 100% {
     opacity: 1;
     transform: scale(1);
-    box-shadow:
-      0 0 6px #22c55e,
-      0 0 15px rgba(34,197,94,.8);
+    box-shadow: 0 0 6px #22c55e, 0 0 15px rgba(34,197,94,.8);
   }
   50% {
     opacity: .55;
     transform: scale(.75);
-    box-shadow:
-      0 0 2px #22c55e,
-      0 0 7px rgba(34,197,94,.4);
+    box-shadow: 0 0 2px #22c55e, 0 0 7px rgba(34,197,94,.4);
   }
 }
 
-/* SUBTITULO CON APARICION LENTA */
 h2 {
   font-weight: normal;
   color: #dbeafe;
@@ -133,24 +117,11 @@ h2 {
 }
 
 @keyframes aparecerTexto {
-  0% {
-    opacity: 0;
-    transform: translateY(12px);
-    text-shadow: 0 0 0 transparent;
-  }
-  60% {
-    opacity: .6;
-    transform: translateY(3px);
-    text-shadow: 0 0 12px rgba(56,189,248,.4);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-    text-shadow: 0 0 14px rgba(56,189,248,.25);
-  }
+  0% { opacity: 0; transform: translateY(12px); }
+  60% { opacity: .6; transform: translateY(3px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
 
-/* CUATRO BLOQUES DEL CONTADOR */
 .reloj {
   display: flex;
   justify-content: center;
@@ -176,15 +147,11 @@ h2 {
     0 0 12px rgba(0,153,255,.22),
     0 0 28px rgba(0,153,255,.12),
     inset 0 0 18px rgba(56,189,248,.09);
-  transition:
-    box-shadow .3s ease,
-    border-color .3s ease,
-    transform .3s ease;
+  transition: box-shadow .3s ease,
+    border-color .3s ease, transform .3s ease;
 }
 
-/* NEON AL PASAR EL MOUSE O TOCAR */
-.unidad:hover,
-.unidad:active {
+.unidad:hover, .unidad:active {
   border-color: #7dd3fc;
   transform: translateY(-3px);
   box-shadow:
@@ -194,7 +161,6 @@ h2 {
     inset 0 0 22px rgba(56,189,248,.15);
 }
 
-/* NUMEROS */
 .numero {
   font-size: clamp(38px,8vw,64px);
   font-weight: bold;
@@ -207,32 +173,21 @@ h2 {
   line-height: 1.15;
 }
 
-/* PULSO DIGITAL */
 .pulso {
   animation: pulsoDigital .35s ease-out;
 }
 
 @keyframes pulsoDigital {
-  0% {
-    transform: scale(1);
-    opacity: .65;
-    text-shadow: 0 0 4px #38bdf8;
-  }
+  0% { transform: scale(1); opacity: .65; }
   45% {
     transform: scale(1.12);
     opacity: 1;
-    text-shadow:
-      0 0 12px #fff,
-      0 0 30px #38bdf8,
+    text-shadow: 0 0 12px #fff, 0 0 30px #38bdf8,
       0 0 48px #0ea5e9;
   }
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
+  100% { transform: scale(1); opacity: 1; }
 }
 
-/* ETIQUETAS */
 .etiqueta {
   margin-top: 10px;
   font-size: 13px;
@@ -241,7 +196,6 @@ h2 {
   text-shadow: 0 0 10px rgba(56,189,248,.5);
 }
 
-/* MENSAJE INFERIOR */
 #mensaje {
   color: #94a3b8;
   margin-top: 38px;
@@ -255,7 +209,117 @@ h2 {
   letter-spacing: 2px;
 }
 
-/* ADAPTACION A CELULARES */
+/* =================================
+   CELEBRACION FINAL
+================================= */
+
+#fuegos {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+  pointer-events: none;
+  display: none;
+}
+
+body.festejando #fuegos {
+  display: block;
+}
+
+.celebracion {
+  position: fixed;
+  inset: 0;
+  z-index: 6;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(2,8,23,.70);
+  backdrop-filter: blur(5px);
+  animation: aparecerFestejo 1.2s ease forwards;
+}
+
+.celebracion.activa {
+  display: flex;
+}
+
+@keyframes aparecerFestejo {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.panel-festejo {
+  width: 100%;
+  max-width: 800px;
+  padding: 40px 20px;
+  border: 1px solid #38bdf8;
+  border-radius: 24px;
+  background: rgba(5,20,48,.94);
+  box-shadow:
+    0 0 25px rgba(56,189,248,.5),
+    0 0 75px rgba(14,165,233,.3),
+    inset 0 0 40px rgba(56,189,248,.10);
+  animation: brilloFinal 2s infinite alternate;
+}
+
+@keyframes brilloFinal {
+  from {
+    box-shadow:
+      0 0 20px rgba(56,189,248,.35),
+      0 0 50px rgba(14,165,233,.2),
+      inset 0 0 30px rgba(56,189,248,.08);
+  }
+  to {
+    box-shadow:
+      0 0 35px rgba(56,189,248,.75),
+      0 0 100px rgba(14,165,233,.45),
+      inset 0 0 45px rgba(56,189,248,.17);
+  }
+}
+
+.titulo-final {
+  color: #f0f9ff;
+  font-size: clamp(32px,8vw,68px);
+  font-weight: bold;
+  letter-spacing: 3px;
+  line-height: 1.15;
+  text-shadow:
+    0 0 8px #fff,
+    0 0 20px #38bdf8,
+    0 0 45px #0ea5e9;
+  animation: latidoFinal 1.4s infinite;
+}
+
+@keyframes latidoFinal {
+  0%,100% { transform: scale(1); }
+  50% { transform: scale(1.035); }
+}
+
+.subtitulo-final {
+  color: #7dd3fc;
+  font-size: clamp(16px,3vw,24px);
+  letter-spacing: 3px;
+  margin-top: 22px;
+  text-shadow: 0 0 15px #0ea5e9;
+}
+
+.mensaje-final {
+  color: #cbd5e1;
+  font-size: clamp(14px,2.5vw,18px);
+  margin-top: 25px;
+  line-height: 1.7;
+}
+
+.sello-final {
+  color: #4ade80;
+  font-size: 12px;
+  letter-spacing: 4px;
+  margin-top: 30px;
+  text-shadow: 0 0 12px #22c55e;
+}
+
 @media (max-width: 600px) {
   .contenedor {
     padding: 30px 12px;
@@ -277,22 +341,20 @@ h2 {
     letter-spacing: 1px;
   }
 
-  h1 {
-    letter-spacing: 2px;
-  }
+  h1 { letter-spacing: 2px; }
 
   .pie {
     font-size: 9px;
     letter-spacing: 1px;
   }
+
+  .panel-festejo { padding: 32px 15px; }
 }
 
-/* RESPETO A PREFERENCIAS DE MOVIMIENTO */
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: .01ms !important;
-    animation-iteration-count: 1 !important;
-    scroll-behavior: auto !important;
+  .punto-activo, .pulso, .titulo-final,
+  .panel-festejo {
+    animation: none !important;
   }
 }
 </style>
@@ -302,7 +364,7 @@ h2 {
 
 <canvas id="particulas"></canvas>
 
-<main class="contenedor">
+<main class="contenedor" id="tablero">
 
   <h1>⏳ CUENTA REGRESIVA</h1>
 
@@ -314,7 +376,6 @@ h2 {
   <h2>Hasta el 1 de mayo de 2027</h2>
 
   <div class="reloj">
-
     <div class="unidad">
       <div class="numero" id="dias">000</div>
       <div class="etiqueta">DÍAS</div>
@@ -334,7 +395,6 @@ h2 {
       <div class="numero" id="segundos">00</div>
       <div class="etiqueta">SEGUNDOS</div>
     </div>
-
   </div>
 
   <p id="mensaje">Cada segundo cuenta...</p>
@@ -345,14 +405,41 @@ h2 {
 
 </main>
 
+<!-- CAPA DE FUEGOS ARTIFICIALES -->
+<canvas id="fuegos"></canvas>
+
+<!-- MENSAJE DE CELEBRACION -->
+<div class="celebracion" id="celebracion">
+  <div class="panel-festejo">
+    <div class="titulo-final">
+      ✨ ¡LLEGÓ EL DÍA! ✨
+    </div>
+
+    <div class="subtitulo-final">
+      MISIÓN COMPLETADA
+    </div>
+
+    <div class="mensaje-final">
+      La cuenta regresiva llegó a cero.<br>
+      ¡Es momento de celebrar!
+    </div>
+
+    <div class="sello-final">
+      SISTEMA // OBJETIVO ALCANZADO
+    </div>
+  </div>
+</div>
+
 <script>
 // ==================================
 // CONTADOR REGRESIVO
 // ==================================
 
-// Medianoche del 1 de mayo de 2027
-// en Argentina (UTC-3).
+// 1 de mayo de 2027 a las 00:00
+// hora de Argentina (UTC-3).
 const objetivo = Date.UTC(2027, 4, 1, 3, 0, 0);
+
+let festejoIniciado = false;
 
 function actualizar() {
   const ahora = Date.now();
@@ -370,10 +457,8 @@ function actualizar() {
   );
 
   document.getElementById("dias").textContent = dias;
-
   document.getElementById("horas").textContent =
     String(horas).padStart(2, "0");
-
   document.getElementById("minutos").textContent =
     String(minutos).padStart(2, "0");
 
@@ -385,7 +470,6 @@ function actualizar() {
 
   if (elementoSegundos.textContent !== nuevoSegundo) {
     elementoSegundos.textContent = nuevoSegundo;
-
     elementoSegundos.classList.remove("pulso");
     void elementoSegundos.offsetWidth;
     elementoSegundos.classList.add("pulso");
@@ -393,17 +477,20 @@ function actualizar() {
 
   if (restante <= 0) {
     document.getElementById("mensaje").textContent =
-      "🎉 ¡LLEGÓ EL DÍA!";
+      "¡OBJETIVO ALCANZADO!";
+
+    if (!festejoIniciado) {
+      festejoIniciado = true;
+      activarCelebracion();
+    }
+
     clearInterval(intervalo);
   }
 }
 
-actualizar();
-const intervalo = setInterval(actualizar, 250);
-
 
 // ==================================
-// PARTICULAS LUMINOSAS
+// PARTICULAS DEL FONDO
 // ==================================
 
 const canvas = document.getElementById("particulas");
@@ -427,7 +514,6 @@ function ajustarCanvas() {
 
   canvas.width = ancho * dpr;
   canvas.height = alto * dpr;
-
   ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
   cantidad = ancho < 600 ? 28 : 65;
@@ -474,10 +560,8 @@ function dibujarParticulas() {
     ctx.fill();
     ctx.shadowBlur = 0;
 
-    // Lineas entre particulas cercanas
     for (let j = i + 1; j < particulas.length; j++) {
       const q = particulas[j];
-
       const dx = p.x - q.x;
       const dy = p.y - q.y;
       const distancia = Math.sqrt(dx*dx + dy*dy);
@@ -486,10 +570,8 @@ function dibujarParticulas() {
         ctx.beginPath();
         ctx.moveTo(p.x, p.y);
         ctx.lineTo(q.x, q.y);
-
         ctx.strokeStyle =
           `rgba(56,189,248,${.10 * (1-distancia/105)})`;
-
         ctx.lineWidth = .6;
         ctx.stroke();
       }
@@ -506,6 +588,175 @@ if (!movimientoReducido) {
 }
 
 window.addEventListener("resize", ajustarCanvas);
+
+
+// ==================================
+// FUEGOS ARTIFICIALES TECNOLOGICOS
+// ==================================
+
+const canvasFuegos = document.getElementById("fuegos");
+const fx = canvasFuegos.getContext("2d");
+
+let fwAncho, fwAlto;
+let cohetes = [];
+let chispas = [];
+let ultimoLanzamiento = 0;
+let animacionFuegos = null;
+
+const colores = [
+  "#38bdf8",
+  "#22d3ee",
+  "#60a5fa",
+  "#a78bfa",
+  "#4ade80",
+  "#f0abfc",
+  "#ffffff"
+];
+
+function ajustarFuegos() {
+  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+  fwAncho = window.innerWidth;
+  fwAlto = window.innerHeight;
+
+  canvasFuegos.width = fwAncho * dpr;
+  canvasFuegos.height = fwAlto * dpr;
+  fx.setTransform(dpr, 0, 0, dpr, 0, 0);
+}
+
+window.addEventListener("resize", ajustarFuegos);
+ajustarFuegos();
+
+function lanzarCohete() {
+  const x = fwAncho * (.12 + Math.random() * .76);
+  const y = fwAlto * (.12 + Math.random() * .40);
+
+  const inicioX = x + (Math.random() - .5) * 150;
+
+  cohetes.push({
+    x: inicioX,
+    y: fwAlto + 10,
+    destinoX: x,
+    destinoY: y,
+    velocidad: 5 + Math.random() * 3,
+    color: colores[Math.floor(Math.random() * colores.length)]
+  });
+}
+
+function explotar(x, y, color) {
+  const cantidadChispas = 55 + Math.floor(Math.random() * 45);
+
+  for (let i = 0; i < cantidadChispas; i++) {
+    const angulo = Math.random() * Math.PI * 2;
+    const velocidad = 1 + Math.random() * 5;
+
+    chispas.push({
+      x, y,
+      vx: Math.cos(angulo) * velocidad,
+      vy: Math.sin(angulo) * velocidad,
+      vida: 1,
+      desgaste: .008 + Math.random() * .013,
+      radio: 1 + Math.random() * 2.3,
+      color: Math.random() < .75
+        ? color
+        : colores[Math.floor(Math.random() * colores.length)]
+    });
+  }
+}
+
+function animarFuegos(tiempo) {
+  fx.clearRect(0, 0, fwAncho, fwAlto);
+
+  // Lanzamientos frecuentes, pero espaciados
+  if (tiempo - ultimoLanzamiento > 480) {
+    lanzarCohete();
+    ultimoLanzamiento = tiempo;
+  }
+
+  // Movimiento de cohetes
+  for (let i = cohetes.length - 1; i >= 0; i--) {
+    const c = cohetes[i];
+
+    const dx = c.destinoX - c.x;
+    const dy = c.destinoY - c.y;
+    const distancia = Math.sqrt(dx*dx + dy*dy);
+
+    if (distancia < c.velocidad + 3) {
+      explotar(c.destinoX, c.destinoY, c.color);
+      cohetes.splice(i, 1);
+      continue;
+    }
+
+    c.x += dx / distancia * c.velocidad;
+    c.y += dy / distancia * c.velocidad;
+
+    fx.beginPath();
+    fx.arc(c.x, c.y, 2.5, 0, Math.PI * 2);
+    fx.fillStyle = c.color;
+    fx.shadowBlur = 15;
+    fx.shadowColor = c.color;
+    fx.fill();
+    fx.shadowBlur = 0;
+  }
+
+  // Partículas de las explosiones
+  for (let i = chispas.length - 1; i >= 0; i--) {
+    const p = chispas[i];
+
+    p.x += p.vx;
+    p.y += p.vy;
+    p.vy += .025;
+    p.vx *= .99;
+    p.vy *= .99;
+    p.vida -= p.desgaste;
+
+    if (p.vida <= 0) {
+      chispas.splice(i, 1);
+      continue;
+    }
+
+    fx.globalAlpha = Math.max(0, p.vida);
+    fx.beginPath();
+    fx.arc(p.x, p.y, p.radio, 0, Math.PI * 2);
+    fx.fillStyle = p.color;
+    fx.shadowBlur = 13;
+    fx.shadowColor = p.color;
+    fx.fill();
+    fx.shadowBlur = 0;
+  }
+
+  fx.globalAlpha = 1;
+  animacionFuegos = requestAnimationFrame(animarFuegos);
+}
+
+
+// ==================================
+// ACTIVACION DEL FESTEJO
+// ==================================
+
+function activarCelebracion() {
+  document.body.classList.add("festejando");
+
+  document.getElementById("celebracion")
+    .classList.add("activa");
+
+  document.getElementById("tablero")
+    .style.boxShadow =
+      "0 0 45px rgba(56,189,248,.8), 0 0 100px rgba(14,165,233,.5)";
+
+  if (!movimientoReducido) {
+    ultimoLanzamiento = 0;
+    animacionFuegos = requestAnimationFrame(animarFuegos);
+  }
+}
+
+
+// ==================================
+// INICIO
+// ==================================
+
+actualizar();
+const intervalo = setInterval(actualizar, 250);
+
 </script>
 
 </body>
