@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -7,7 +6,10 @@
 <title>Cuenta regresiva | 2027</title>
 
 <style>
-* { box-sizing: border-box; }
+
+* {
+  box-sizing: border-box;
+}
 
 body {
   margin: 0;
@@ -15,17 +17,35 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+
   background:
-    radial-gradient(ellipse at 15% 20%,
-      rgba(0,140,255,.24), transparent 42%),
-    radial-gradient(ellipse at 85% 80%,
-      rgba(0,75,180,.22), transparent 45%),
-    linear-gradient(135deg,#030712,#071a35 55%,#020617);
+    radial-gradient(
+      ellipse at 15% 20%,
+      rgba(0,140,255,.24),
+      transparent 42%
+    ),
+    radial-gradient(
+      ellipse at 85% 80%,
+      rgba(0,75,180,.22),
+      transparent 45%
+    ),
+    linear-gradient(
+      135deg,
+      #030712,
+      #071a35 55%,
+      #020617
+    );
+
   color: white;
   font-family: Arial, sans-serif;
   text-align: center;
   overflow-x: hidden;
 }
+
+
+/* ==========================================
+   FONDO DE PARTICULAS
+========================================== */
 
 #particulas {
   position: fixed;
@@ -36,469 +56,1195 @@ body {
   pointer-events: none;
 }
 
+
+/* ==========================================
+   TABLERO PRINCIPAL
+========================================== */
+
 .contenedor {
   position: relative;
   z-index: 1;
+
   padding: 45px 20px;
+
   width: calc(100% - 32px);
   max-width: 1000px;
+
   margin: 20px;
+
   background: rgba(7,20,42,.80);
+
   border: 1px solid rgba(56,189,248,.5);
+
   border-radius: 24px;
+
   box-shadow:
     0 0 25px rgba(0,153,255,.2),
     0 0 65px rgba(0,153,255,.12),
     inset 0 0 35px rgba(0,140,255,.08);
+
   backdrop-filter: blur(10px);
+
   animation: entrada 1.2s ease-out;
+
   transition: box-shadow .8s ease;
 }
 
+
 @keyframes entrada {
-  from { opacity: 0; transform: translateY(18px); }
-  to { opacity: 1; transform: translateY(0); }
+
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
 }
 
+
+/* ==========================================
+   TITULO
+========================================== */
+
 h1 {
+
   color: #38bdf8;
+
   font-size: clamp(24px,5vw,40px);
+
   letter-spacing: 4px;
+
   text-shadow:
     0 0 5px #38bdf8,
     0 0 15px #0ea5e9,
     0 0 35px rgba(14,165,233,.85);
+
 }
+
+
+/* ==========================================
+   RELOJ DE ARENA ANIMADO
+========================================== */
+
+.reloj-arena {
+
+  display: inline-block;
+
+  margin-right: 12px;
+
+  font-size: .9em;
+
+  filter:
+    drop-shadow(0 0 4px #38bdf8)
+    drop-shadow(0 0 12px #0ea5e9);
+
+  transform-origin: center center;
+
+}
+
+
+/* Animación del giro */
+
+.reloj-arena.girando {
+
+  animation:
+    giroArena 1.5s ease-in-out;
+
+}
+
+
+@keyframes giroArena {
+
+  0% {
+
+    transform:
+      rotate(0deg)
+      scale(1);
+
+    filter:
+      drop-shadow(0 0 4px #38bdf8)
+      drop-shadow(0 0 10px #0ea5e9);
+
+  }
+
+
+  45% {
+
+    transform:
+      rotate(90deg)
+      scale(1.12);
+
+    filter:
+      drop-shadow(0 0 8px #38bdf8)
+      drop-shadow(0 0 22px #0ea5e9);
+
+  }
+
+
+  100% {
+
+    transform:
+      rotate(180deg)
+      scale(1);
+
+    filter:
+      drop-shadow(0 0 5px #38bdf8)
+      drop-shadow(0 0 15px #0ea5e9);
+
+  }
+
+}
+
+
+/* ==========================================
+   SISTEMA ACTIVO
+========================================== */
 
 .estado-sistema {
+
   display: flex;
+
   justify-content: center;
+
   align-items: center;
+
   gap: 10px;
+
   margin: 22px 0 12px;
+
   color: #4ade80;
+
   font-size: 12px;
+
   font-weight: bold;
+
   letter-spacing: 3px;
-  text-shadow: 0 0 10px rgba(74,222,128,.45);
+
+  text-shadow:
+    0 0 10px rgba(74,222,128,.45);
+
 }
 
+
 .punto-activo {
+
   width: 10px;
+
   height: 10px;
+
   border-radius: 50%;
+
   background: #22c55e;
+
   box-shadow:
     0 0 6px #22c55e,
     0 0 15px rgba(34,197,94,.8);
+
   animation: latidoEstado 1.5s infinite;
+
 }
+
 
 @keyframes latidoEstado {
+
   0%, 100% {
+
     opacity: 1;
+
     transform: scale(1);
-    box-shadow: 0 0 6px #22c55e, 0 0 15px rgba(34,197,94,.8);
+
+    box-shadow:
+      0 0 6px #22c55e,
+      0 0 15px rgba(34,197,94,.8);
+
   }
+
   50% {
+
     opacity: .55;
+
     transform: scale(.75);
-    box-shadow: 0 0 2px #22c55e, 0 0 7px rgba(34,197,94,.4);
+
+    box-shadow:
+      0 0 2px #22c55e,
+      0 0 7px rgba(34,197,94,.4);
+
   }
+
 }
+
+
+/* ==========================================
+   SUBTITULO
+========================================== */
 
 h2 {
+
   font-weight: normal;
+
   color: #dbeafe;
+
   letter-spacing: 1px;
+
   font-size: clamp(17px,3vw,25px);
+
   opacity: 0;
-  animation: aparecerTexto 3s ease-out .8s forwards;
+
+  animation:
+    aparecerTexto 3s ease-out .8s forwards;
+
 }
+
 
 @keyframes aparecerTexto {
-  0% { opacity: 0; transform: translateY(12px); }
-  60% { opacity: .6; transform: translateY(3px); }
-  100% { opacity: 1; transform: translateY(0); }
+
+  0% {
+
+    opacity: 0;
+
+    transform: translateY(12px);
+
+  }
+
+  60% {
+
+    opacity: .6;
+
+    transform: translateY(3px);
+
+  }
+
+  100% {
+
+    opacity: 1;
+
+    transform: translateY(0);
+
+  }
+
 }
+
+
+/* ==========================================
+   CONTADOR
+========================================== */
 
 .reloj {
+
   display: flex;
+
   justify-content: center;
+
   align-items: stretch;
+
   gap: 15px;
+
   flex-wrap: wrap;
+
   margin-top: 40px;
+
 }
 
+
 .unidad {
+
   display: flex;
+
   flex-direction: column;
+
   justify-content: center;
+
   align-items: center;
-  background: linear-gradient(145deg,
-    rgba(15,45,82,.96),
-    rgba(5,18,40,.97));
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(15,45,82,.96),
+      rgba(5,18,40,.97)
+    );
+
   border: 1px solid rgba(56,189,248,.7);
+
   border-radius: 16px;
+
   padding: 22px 14px;
+
   min-width: 120px;
+
   box-shadow:
     0 0 12px rgba(0,153,255,.22),
     0 0 28px rgba(0,153,255,.12),
     inset 0 0 18px rgba(56,189,248,.09);
-  transition: box-shadow .3s ease,
-    border-color .3s ease, transform .3s ease;
+
+  transition:
+    box-shadow .3s ease,
+    border-color .3s ease,
+    transform .3s ease;
+
 }
 
-.unidad:hover, .unidad:active {
+
+.unidad:hover,
+.unidad:active {
+
   border-color: #7dd3fc;
+
   transform: translateY(-3px);
+
   box-shadow:
+
     0 0 20px rgba(56,189,248,.55),
+
     0 0 40px rgba(0,153,255,.35),
+
     0 0 65px rgba(0,153,255,.18),
+
     inset 0 0 22px rgba(56,189,248,.15);
+
 }
+
+
+/* ==========================================
+   NUMEROS
+========================================== */
 
 .numero {
+
   font-size: clamp(38px,8vw,64px);
+
   font-weight: bold;
+
   color: #f0f9ff;
+
   text-shadow:
     0 0 6px #fff,
     0 0 16px #38bdf8,
     0 0 32px rgba(56,189,248,.8);
+
   font-variant-numeric: tabular-nums;
+
   line-height: 1.15;
+
 }
+
+
+/* ==========================================
+   PULSO DE LOS SEGUNDOS
+========================================== */
 
 .pulso {
-  animation: pulsoDigital .35s ease-out;
+
+  animation:
+    pulsoDigital .35s ease-out;
+
 }
+
 
 @keyframes pulsoDigital {
-  0% { transform: scale(1); opacity: .65; }
-  45% {
-    transform: scale(1.12);
-    opacity: 1;
-    text-shadow: 0 0 12px #fff, 0 0 30px #38bdf8,
-      0 0 48px #0ea5e9;
+
+  0% {
+
+    transform: scale(1);
+
+    opacity: .65;
+
   }
-  100% { transform: scale(1); opacity: 1; }
+
+  45% {
+
+    transform: scale(1.12);
+
+    opacity: 1;
+
+    text-shadow:
+      0 0 12px #fff,
+      0 0 30px #38bdf8,
+      0 0 48px #0ea5e9;
+
+  }
+
+  100% {
+
+    transform: scale(1);
+
+    opacity: 1;
+
+  }
+
 }
+
+
+/* ==========================================
+   ETIQUETAS
+========================================== */
 
 .etiqueta {
+
   margin-top: 10px;
+
   font-size: 13px;
+
   color: #7dd3fc;
+
   letter-spacing: 2px;
-  text-shadow: 0 0 10px rgba(56,189,248,.5);
+
+  text-shadow:
+    0 0 10px rgba(56,189,248,.5);
+
 }
+
+
+/* ==========================================
+   MENSAJE
+========================================== */
 
 #mensaje {
+
   color: #94a3b8;
+
   margin-top: 38px;
+
   letter-spacing: 1px;
+
 }
+
 
 .pie {
+
   margin-top: 24px;
+
   color: #64748b;
+
   font-size: 11px;
+
   letter-spacing: 2px;
+
 }
 
-/* =================================
-   CELEBRACION FINAL
-================================= */
+
+/* ==========================================
+   FUEGOS ARTIFICIALES
+========================================== */
 
 #fuegos {
+
   position: fixed;
+
   inset: 0;
+
   width: 100%;
+
   height: 100%;
+
   z-index: 5;
+
   pointer-events: none;
+
   display: none;
+
 }
+
 
 body.festejando #fuegos {
+
   display: block;
+
 }
+
+
+/* ==========================================
+   PANTALLA DE CELEBRACION
+========================================== */
 
 .celebracion {
+
   position: fixed;
+
   inset: 0;
+
   z-index: 6;
+
   display: none;
+
   flex-direction: column;
+
   align-items: center;
+
   justify-content: center;
+
   padding: 24px;
+
   background: rgba(2,8,23,.70);
+
   backdrop-filter: blur(5px);
-  animation: aparecerFestejo 1.2s ease forwards;
+
+  animation:
+    aparecerFestejo 1.2s ease forwards;
+
 }
+
 
 .celebracion.activa {
+
   display: flex;
+
 }
+
 
 @keyframes aparecerFestejo {
-  from { opacity: 0; }
-  to { opacity: 1; }
+
+  from {
+
+    opacity: 0;
+
+  }
+
+  to {
+
+    opacity: 1;
+
+  }
+
 }
+
+
+/* ==========================================
+   PANEL FINAL
+========================================== */
 
 .panel-festejo {
+
   width: 100%;
+
   max-width: 800px;
+
   padding: 40px 20px;
+
   border: 1px solid #38bdf8;
+
   border-radius: 24px;
+
   background: rgba(5,20,48,.94);
+
   box-shadow:
+
     0 0 25px rgba(56,189,248,.5),
+
     0 0 75px rgba(14,165,233,.3),
+
     inset 0 0 40px rgba(56,189,248,.10);
-  animation: brilloFinal 2s infinite alternate;
+
+  animation:
+    brilloFinal 2s infinite alternate;
+
 }
+
 
 @keyframes brilloFinal {
+
   from {
+
     box-shadow:
+
       0 0 20px rgba(56,189,248,.35),
+
       0 0 50px rgba(14,165,233,.2),
+
       inset 0 0 30px rgba(56,189,248,.08);
+
   }
+
   to {
+
     box-shadow:
+
       0 0 35px rgba(56,189,248,.75),
+
       0 0 100px rgba(14,165,233,.45),
+
       inset 0 0 45px rgba(56,189,248,.17);
+
   }
+
 }
+
 
 .titulo-final {
+
   color: #f0f9ff;
+
   font-size: clamp(32px,8vw,68px);
+
   font-weight: bold;
+
   letter-spacing: 3px;
+
   line-height: 1.15;
+
   text-shadow:
+
     0 0 8px #fff,
+
     0 0 20px #38bdf8,
+
     0 0 45px #0ea5e9;
-  animation: latidoFinal 1.4s infinite;
+
+  animation:
+    latidoFinal 1.4s infinite;
+
 }
+
 
 @keyframes latidoFinal {
-  0%,100% { transform: scale(1); }
-  50% { transform: scale(1.035); }
+
+  0%,100% {
+
+    transform: scale(1);
+
+  }
+
+  50% {
+
+    transform: scale(1.035);
+
+  }
+
 }
+
 
 .subtitulo-final {
+
   color: #7dd3fc;
+
   font-size: clamp(16px,3vw,24px);
+
   letter-spacing: 3px;
+
   margin-top: 22px;
-  text-shadow: 0 0 15px #0ea5e9;
+
+  text-shadow:
+    0 0 15px #0ea5e9;
+
 }
+
 
 .mensaje-final {
+
   color: #cbd5e1;
+
   font-size: clamp(14px,2.5vw,18px);
+
   margin-top: 25px;
+
   line-height: 1.7;
+
 }
+
 
 .sello-final {
+
   color: #4ade80;
+
   font-size: 12px;
+
   letter-spacing: 4px;
+
   margin-top: 30px;
-  text-shadow: 0 0 12px #22c55e;
+
+  text-shadow:
+    0 0 12px #22c55e;
+
 }
+
+
+/* ==========================================
+   CELULARES
+========================================== */
 
 @media (max-width: 600px) {
+
   .contenedor {
+
     padding: 30px 12px;
+
     margin: 12px;
+
   }
+
 
   .reloj {
+
     gap: 8px;
+
     margin-top: 30px;
+
   }
+
 
   .unidad {
+
     min-width: 72px;
+
     padding: 16px 9px;
+
   }
+
 
   .etiqueta {
+
     font-size: 10px;
+
     letter-spacing: 1px;
+
   }
 
-  h1 { letter-spacing: 2px; }
+
+  h1 {
+
+    letter-spacing: 2px;
+
+  }
+
 
   .pie {
+
     font-size: 9px;
+
     letter-spacing: 1px;
+
   }
 
-  .panel-festejo { padding: 32px 15px; }
+
+  .panel-festejo {
+
+    padding: 32px 15px;
+
+  }
+
 }
+
+
+/* ==========================================
+   REDUCCION DE MOVIMIENTO
+========================================== */
 
 @media (prefers-reduced-motion: reduce) {
-  .punto-activo, .pulso, .titulo-final,
-  .panel-festejo {
+
+  .punto-activo,
+  .pulso,
+  .titulo-final,
+  .panel-festejo,
+  .reloj-arena {
+
     animation: none !important;
+
   }
+
 }
+
 </style>
+
 </head>
+
 
 <body>
 
+
+<!-- ======================================
+     FONDO
+====================================== -->
+
 <canvas id="particulas"></canvas>
+
+
+<!-- ======================================
+     TABLERO
+====================================== -->
 
 <main class="contenedor" id="tablero">
 
-  <h1>⏳ CUENTA REGRESIVA</h1>
+
+  <h1>
+
+    <span
+      id="relojArena"
+      class="reloj-arena"
+    >⏳</span>
+
+    CUENTA REGRESIVA
+
+  </h1>
+
 
   <div class="estado-sistema">
+
     <span class="punto-activo"></span>
+
     <span>SISTEMA ACTIVO</span>
+
   </div>
 
-  <h2>Hasta el 1 de mayo de 2027</h2>
+
+  <h2>
+    Hasta el 1 de mayo de 2027
+  </h2>
+
 
   <div class="reloj">
-    <div class="unidad">
-      <div class="numero" id="dias">000</div>
-      <div class="etiqueta">DÍAS</div>
-    </div>
+
 
     <div class="unidad">
-      <div class="numero" id="horas">00</div>
-      <div class="etiqueta">HORAS</div>
+
+      <div
+        class="numero"
+        id="dias"
+      >000</div>
+
+      <div class="etiqueta">
+        DÍAS
+      </div>
+
     </div>
 
-    <div class="unidad">
-      <div class="numero" id="minutos">00</div>
-      <div class="etiqueta">MINUTOS</div>
-    </div>
 
     <div class="unidad">
-      <div class="numero" id="segundos">00</div>
-      <div class="etiqueta">SEGUNDOS</div>
+
+      <div
+        class="numero"
+        id="horas"
+      >00</div>
+
+      <div class="etiqueta">
+        HORAS
+      </div>
+
     </div>
+
+
+    <div class="unidad">
+
+      <div
+        class="numero"
+        id="minutos"
+      >00</div>
+
+      <div class="etiqueta">
+        MINUTOS
+      </div>
+
+    </div>
+
+
+    <div class="unidad">
+
+      <div
+        class="numero"
+        id="segundos"
+      >00</div>
+
+      <div class="etiqueta">
+        SEGUNDOS
+      </div>
+
+    </div>
+
+
   </div>
 
-  <p id="mensaje">Cada segundo cuenta...</p>
+
+  <p id="mensaje">
+    Cada segundo cuenta...
+  </p>
+
 
   <div class="pie">
     SISTEMA DE CUENTA REGRESIVA // 2027
   </div>
 
+
 </main>
 
-<!-- CAPA DE FUEGOS ARTIFICIALES -->
+
+<!-- ======================================
+     FUEGOS ARTIFICIALES
+====================================== -->
+
 <canvas id="fuegos"></canvas>
 
-<!-- MENSAJE DE CELEBRACION -->
-<div class="celebracion" id="celebracion">
+
+<!-- ======================================
+     CELEBRACION
+====================================== -->
+
+<div
+  class="celebracion"
+  id="celebracion"
+>
+
+
   <div class="panel-festejo">
+
+
     <div class="titulo-final">
+
       ✨ ¡LLEGÓ EL DÍA! ✨
+
     </div>
+
 
     <div class="subtitulo-final">
+
       MISIÓN COMPLETADA
+
     </div>
+
 
     <div class="mensaje-final">
+
       La cuenta regresiva llegó a cero.<br>
+
       ¡Es momento de celebrar!
+
     </div>
+
 
     <div class="sello-final">
+
       SISTEMA // OBJETIVO ALCANZADO
+
     </div>
+
+
   </div>
+
+
 </div>
 
+
 <script>
-// ==================================
+
+
+// ==========================================
 // CONTADOR REGRESIVO
-// ==================================
+// ==========================================
+
 
 // 1 de mayo de 2027 a las 00:00
 // hora de Argentina (UTC-3).
-const objetivo = Date.UTC(2027, 4, 1, 3, 0, 0);
+
+const objetivo =
+  Date.UTC(2027, 4, 1, 3, 0, 0);
+
 
 let festejoIniciado = false;
 
+
 function actualizar() {
+
+
   const ahora = Date.now();
-  const restante = Math.max(0, objetivo - ahora);
 
-  const dias = Math.floor(restante / 86400000);
-  const horas = Math.floor(
-    (restante % 86400000) / 3600000
-  );
-  const minutos = Math.floor(
-    (restante % 3600000) / 60000
-  );
-  const segundos = Math.floor(
-    (restante % 60000) / 1000
-  );
 
-  document.getElementById("dias").textContent = dias;
-  document.getElementById("horas").textContent =
+  const restante =
+    Math.max(
+      0,
+      objetivo - ahora
+    );
+
+
+  const dias =
+    Math.floor(
+      restante / 86400000
+    );
+
+
+  const horas =
+    Math.floor(
+      (restante % 86400000) /
+      3600000
+    );
+
+
+  const minutos =
+    Math.floor(
+      (restante % 3600000) /
+      60000
+    );
+
+
+  const segundos =
+    Math.floor(
+      (restante % 60000) /
+      1000
+    );
+
+
+  document.getElementById(
+    "dias"
+  ).textContent = dias;
+
+
+  document.getElementById(
+    "horas"
+  ).textContent =
     String(horas).padStart(2, "0");
-  document.getElementById("minutos").textContent =
+
+
+  document.getElementById(
+    "minutos"
+  ).textContent =
     String(minutos).padStart(2, "0");
 
+
   const elementoSegundos =
-    document.getElementById("segundos");
+    document.getElementById(
+      "segundos"
+    );
+
 
   const nuevoSegundo =
     String(segundos).padStart(2, "0");
 
-  if (elementoSegundos.textContent !== nuevoSegundo) {
-    elementoSegundos.textContent = nuevoSegundo;
-    elementoSegundos.classList.remove("pulso");
+
+  if (
+    elementoSegundos.textContent !==
+    nuevoSegundo
+  ) {
+
+
+    elementoSegundos.textContent =
+      nuevoSegundo;
+
+
+    elementoSegundos.classList.remove(
+      "pulso"
+    );
+
+
     void elementoSegundos.offsetWidth;
-    elementoSegundos.classList.add("pulso");
+
+
+    elementoSegundos.classList.add(
+      "pulso"
+    );
+
   }
+
 
   if (restante <= 0) {
-    document.getElementById("mensaje").textContent =
+
+
+    document.getElementById(
+      "mensaje"
+    ).textContent =
       "¡OBJETIVO ALCANZADO!";
 
+
     if (!festejoIniciado) {
+
       festejoIniciado = true;
+
       activarCelebracion();
+
     }
 
+
     clearInterval(intervalo);
+
   }
+
 }
 
 
-// ==================================
+
+// ==========================================
+// ANIMACION DEL RELOJ DE ARENA
+// ==========================================
+
+
+const relojArena =
+  document.getElementById(
+    "relojArena"
+  );
+
+
+let arenaArriba = true;
+
+
+function girarRelojArena() {
+
+
+  relojArena.classList.remove(
+    "girando"
+  );
+
+
+  // Reinicia la animación CSS
+  void relojArena.offsetWidth;
+
+
+  relojArena.classList.add(
+    "girando"
+  );
+
+
+  setTimeout(() => {
+
+
+    if (arenaArriba) {
+
+      relojArena.textContent = "⌛";
+
+    } else {
+
+      relojArena.textContent = "⏳";
+
+    }
+
+
+    arenaArriba = !arenaArriba;
+
+
+  }, 750);
+
+}
+
+
+// El reloj gira cada 6 segundos.
+
+setInterval(
+  girarRelojArena,
+  6000
+);
+
+
+
+// ==========================================
 // PARTICULAS DEL FONDO
-// ==================================
+// ==========================================
 
-const canvas = document.getElementById("particulas");
-const ctx = canvas.getContext("2d");
 
-let ancho, alto;
+const canvas =
+  document.getElementById(
+    "particulas"
+  );
+
+
+const ctx =
+  canvas.getContext("2d");
+
+
+let ancho;
+let alto;
+
 let particulas = [];
+
 let cantidad = 65;
+
 
 const movimientoReducido =
   window.matchMedia &&
@@ -506,256 +1252,763 @@ const movimientoReducido =
     "(prefers-reduced-motion: reduce)"
   ).matches;
 
+
 function ajustarCanvas() {
-  const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
-  ancho = window.innerWidth;
-  alto = window.innerHeight;
 
-  canvas.width = ancho * dpr;
-  canvas.height = alto * dpr;
-  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  const dpr =
+    Math.min(
+      window.devicePixelRatio || 1,
+      2
+    );
 
-  cantidad = ancho < 600 ? 28 : 65;
 
-  particulas = Array.from(
-    { length: cantidad },
-    () => ({
-      x: Math.random() * ancho,
-      y: Math.random() * alto,
-      radio: Math.random() * 1.8 + .5,
-      velocidad: Math.random() * .35 + .12,
-      fase: Math.random() * Math.PI * 2
-    })
+  ancho =
+    window.innerWidth;
+
+
+  alto =
+    window.innerHeight;
+
+
+  canvas.width =
+    ancho * dpr;
+
+
+  canvas.height =
+    alto * dpr;
+
+
+  ctx.setTransform(
+    dpr,
+    0,
+    0,
+    dpr,
+    0,
+    0
   );
+
+
+  cantidad =
+    ancho < 600
+      ? 28
+      : 65;
+
+
+  particulas =
+    Array.from(
+      { length: cantidad },
+      () => ({
+
+        x:
+          Math.random() *
+          ancho,
+
+        y:
+          Math.random() *
+          alto,
+
+        radio:
+          Math.random() *
+          1.8 + .5,
+
+        velocidad:
+          Math.random() *
+          .35 + .12,
+
+        fase:
+          Math.random() *
+          Math.PI * 2
+
+      })
+    );
+
 }
+
+
 
 function dibujarParticulas() {
-  ctx.clearRect(0, 0, ancho, alto);
 
-  const tiempo = Date.now() * .001;
 
-  for (let i = 0; i < particulas.length; i++) {
-    const p = particulas[i];
+  ctx.clearRect(
+    0,
+    0,
+    ancho,
+    alto
+  );
 
-    p.y -= p.velocidad;
-    p.x += Math.sin(tiempo + p.fase) * .18;
+
+  const tiempo =
+    Date.now() * .001;
+
+
+  for (
+    let i = 0;
+    i < particulas.length;
+    i++
+  ) {
+
+
+    const p =
+      particulas[i];
+
+
+    p.y -=
+      p.velocidad;
+
+
+    p.x +=
+      Math.sin(
+        tiempo + p.fase
+      ) * .18;
+
 
     if (p.y < -5) {
-      p.y = alto + 5;
-      p.x = Math.random() * ancho;
+
+      p.y =
+        alto + 5;
+
+      p.x =
+        Math.random() *
+        ancho;
+
     }
 
-    if (p.x < 0) p.x = ancho;
-    if (p.x > ancho) p.x = 0;
 
-    const brillo = .35 + .45 *
-      (Math.sin(tiempo * 1.5 + p.fase) + 1) / 2;
+    if (p.x < 0)
+      p.x = ancho;
+
+
+    if (p.x > ancho)
+      p.x = 0;
+
+
+    const brillo =
+      .35 +
+      .45 *
+      (
+        Math.sin(
+          tiempo * 1.5 +
+          p.fase
+        ) + 1
+      ) / 2;
+
 
     ctx.beginPath();
-    ctx.arc(p.x, p.y, p.radio, 0, Math.PI * 2);
-    ctx.fillStyle = `rgba(56,189,248,${brillo})`;
+
+
+    ctx.arc(
+      p.x,
+      p.y,
+      p.radio,
+      0,
+      Math.PI * 2
+    );
+
+
+    ctx.fillStyle =
+      `rgba(56,189,248,${brillo})`;
+
+
     ctx.shadowBlur = 9;
-    ctx.shadowColor = "#0ea5e9";
+
+    ctx.shadowColor =
+      "#0ea5e9";
+
+
     ctx.fill();
+
+
     ctx.shadowBlur = 0;
 
-    for (let j = i + 1; j < particulas.length; j++) {
-      const q = particulas[j];
-      const dx = p.x - q.x;
-      const dy = p.y - q.y;
-      const distancia = Math.sqrt(dx*dx + dy*dy);
+
+    // Conexiones entre partículas
+
+    for (
+      let j = i + 1;
+      j < particulas.length;
+      j++
+    ) {
+
+
+      const q =
+        particulas[j];
+
+
+      const dx =
+        p.x - q.x;
+
+
+      const dy =
+        p.y - q.y;
+
+
+      const distancia =
+        Math.sqrt(
+          dx * dx +
+          dy * dy
+        );
+
 
       if (distancia < 105) {
+
+
         ctx.beginPath();
-        ctx.moveTo(p.x, p.y);
-        ctx.lineTo(q.x, q.y);
+
+
+        ctx.moveTo(
+          p.x,
+          p.y
+        );
+
+
+        ctx.lineTo(
+          q.x,
+          q.y
+        );
+
+
         ctx.strokeStyle =
-          `rgba(56,189,248,${.10 * (1-distancia/105)})`;
+          `rgba(56,189,248,${
+            .10 *
+            (1 - distancia / 105)
+          })`;
+
+
         ctx.lineWidth = .6;
+
+
         ctx.stroke();
+
       }
+
     }
+
   }
 
-  requestAnimationFrame(dibujarParticulas);
+
+  requestAnimationFrame(
+    dibujarParticulas
+  );
+
 }
+
 
 ajustarCanvas();
 
+
 if (!movimientoReducido) {
+
   dibujarParticulas();
+
 }
 
-window.addEventListener("resize", ajustarCanvas);
+
+window.addEventListener(
+  "resize",
+  ajustarCanvas
+);
 
 
-// ==================================
+
+// ==========================================
 // FUEGOS ARTIFICIALES TECNOLOGICOS
-// ==================================
+// ==========================================
 
-const canvasFuegos = document.getElementById("fuegos");
-const fx = canvasFuegos.getContext("2d");
 
-let fwAncho, fwAlto;
+const canvasFuegos =
+  document.getElementById(
+    "fuegos"
+  );
+
+
+const fx =
+  canvasFuegos.getContext(
+    "2d"
+  );
+
+
+let fwAncho;
+let fwAlto;
+
 let cohetes = [];
+
 let chispas = [];
+
 let ultimoLanzamiento = 0;
+
 let animacionFuegos = null;
 
+
 const colores = [
+
   "#38bdf8",
+
   "#22d3ee",
+
   "#60a5fa",
+
   "#a78bfa",
+
   "#4ade80",
+
   "#f0abfc",
+
   "#ffffff"
+
 ];
 
-function ajustarFuegos() {
-  const dpr = Math.min(window.devicePixelRatio || 1, 2);
-  fwAncho = window.innerWidth;
-  fwAlto = window.innerHeight;
 
-  canvasFuegos.width = fwAncho * dpr;
-  canvasFuegos.height = fwAlto * dpr;
-  fx.setTransform(dpr, 0, 0, dpr, 0, 0);
+function ajustarFuegos() {
+
+
+  const dpr =
+    Math.min(
+      window.devicePixelRatio || 1,
+      2
+    );
+
+
+  fwAncho =
+    window.innerWidth;
+
+
+  fwAlto =
+    window.innerHeight;
+
+
+  canvasFuegos.width =
+    fwAncho * dpr;
+
+
+  canvasFuegos.height =
+    fwAlto * dpr;
+
+
+  fx.setTransform(
+    dpr,
+    0,
+    0,
+    dpr,
+    0,
+    0
+  );
+
 }
 
-window.addEventListener("resize", ajustarFuegos);
+
+window.addEventListener(
+  "resize",
+  ajustarFuegos
+);
+
+
 ajustarFuegos();
 
-function lanzarCohete() {
-  const x = fwAncho * (.12 + Math.random() * .76);
-  const y = fwAlto * (.12 + Math.random() * .40);
 
-  const inicioX = x + (Math.random() - .5) * 150;
+
+function lanzarCohete() {
+
+
+  const x =
+    fwAncho *
+    (.12 +
+      Math.random() *
+      .76);
+
+
+  const y =
+    fwAlto *
+    (.12 +
+      Math.random() *
+      .40);
+
+
+  const inicioX =
+    x +
+    (Math.random() - .5) *
+    150;
+
 
   cohetes.push({
+
     x: inicioX,
+
     y: fwAlto + 10,
+
     destinoX: x,
+
     destinoY: y,
-    velocidad: 5 + Math.random() * 3,
-    color: colores[Math.floor(Math.random() * colores.length)]
+
+    velocidad:
+      5 +
+      Math.random() * 3,
+
+    color:
+      colores[
+        Math.floor(
+          Math.random() *
+          colores.length
+        )
+      ]
+
   });
+
 }
 
-function explotar(x, y, color) {
-  const cantidadChispas = 55 + Math.floor(Math.random() * 45);
 
-  for (let i = 0; i < cantidadChispas; i++) {
-    const angulo = Math.random() * Math.PI * 2;
-    const velocidad = 1 + Math.random() * 5;
+
+function explotar(
+  x,
+  y,
+  color
+) {
+
+
+  const cantidadChispas =
+    55 +
+    Math.floor(
+      Math.random() * 45
+    );
+
+
+  for (
+    let i = 0;
+    i < cantidadChispas;
+    i++
+  ) {
+
+
+    const angulo =
+      Math.random() *
+      Math.PI * 2;
+
+
+    const velocidad =
+      1 +
+      Math.random() * 5;
+
 
     chispas.push({
-      x, y,
-      vx: Math.cos(angulo) * velocidad,
-      vy: Math.sin(angulo) * velocidad,
+
+      x,
+      y,
+
+      vx:
+        Math.cos(angulo) *
+        velocidad,
+
+      vy:
+        Math.sin(angulo) *
+        velocidad,
+
       vida: 1,
-      desgaste: .008 + Math.random() * .013,
-      radio: 1 + Math.random() * 2.3,
-      color: Math.random() < .75
-        ? color
-        : colores[Math.floor(Math.random() * colores.length)]
+
+      desgaste:
+        .008 +
+        Math.random() * .013,
+
+      radio:
+        1 +
+        Math.random() * 2.3,
+
+      color:
+        Math.random() < .75
+          ? color
+          : colores[
+              Math.floor(
+                Math.random() *
+                colores.length
+              )
+            ]
+
     });
+
   }
+
 }
 
-function animarFuegos(tiempo) {
-  fx.clearRect(0, 0, fwAncho, fwAlto);
 
-  // Lanzamientos frecuentes, pero espaciados
-  if (tiempo - ultimoLanzamiento > 480) {
+
+function animarFuegos(
+  tiempo
+) {
+
+
+  fx.clearRect(
+    0,
+    0,
+    fwAncho,
+    fwAlto
+  );
+
+
+  if (
+    tiempo -
+    ultimoLanzamiento >
+    480
+  ) {
+
+
     lanzarCohete();
-    ultimoLanzamiento = tiempo;
+
+
+    ultimoLanzamiento =
+      tiempo;
+
   }
+
 
   // Movimiento de cohetes
-  for (let i = cohetes.length - 1; i >= 0; i--) {
-    const c = cohetes[i];
 
-    const dx = c.destinoX - c.x;
-    const dy = c.destinoY - c.y;
-    const distancia = Math.sqrt(dx*dx + dy*dy);
+  for (
+    let i =
+      cohetes.length - 1;
+    i >= 0;
+    i--
+  ) {
 
-    if (distancia < c.velocidad + 3) {
-      explotar(c.destinoX, c.destinoY, c.color);
-      cohetes.splice(i, 1);
+
+    const c =
+      cohetes[i];
+
+
+    const dx =
+      c.destinoX -
+      c.x;
+
+
+    const dy =
+      c.destinoY -
+      c.y;
+
+
+    const distancia =
+      Math.sqrt(
+        dx * dx +
+        dy * dy
+      );
+
+
+    if (
+      distancia <
+      c.velocidad + 3
+    ) {
+
+
+      explotar(
+        c.destinoX,
+        c.destinoY,
+        c.color
+      );
+
+
+      cohetes.splice(
+        i,
+        1
+      );
+
+
       continue;
+
     }
 
-    c.x += dx / distancia * c.velocidad;
-    c.y += dy / distancia * c.velocidad;
+
+    c.x +=
+      dx / distancia *
+      c.velocidad;
+
+
+    c.y +=
+      dy / distancia *
+      c.velocidad;
+
 
     fx.beginPath();
-    fx.arc(c.x, c.y, 2.5, 0, Math.PI * 2);
-    fx.fillStyle = c.color;
+
+
+    fx.arc(
+      c.x,
+      c.y,
+      2.5,
+      0,
+      Math.PI * 2
+    );
+
+
+    fx.fillStyle =
+      c.color;
+
+
     fx.shadowBlur = 15;
-    fx.shadowColor = c.color;
+
+    fx.shadowColor =
+      c.color;
+
+
     fx.fill();
+
+
     fx.shadowBlur = 0;
+
   }
 
-  // Partículas de las explosiones
-  for (let i = chispas.length - 1; i >= 0; i--) {
-    const p = chispas[i];
 
-    p.x += p.vx;
-    p.y += p.vy;
+  // Partículas de explosiones
+
+  for (
+    let i =
+      chispas.length - 1;
+    i >= 0;
+    i--
+  ) {
+
+
+    const p =
+      chispas[i];
+
+
+    p.x +=
+      p.vx;
+
+
+    p.y +=
+      p.vy;
+
+
     p.vy += .025;
+
+
     p.vx *= .99;
+
     p.vy *= .99;
-    p.vida -= p.desgaste;
+
+
+    p.vida -=
+      p.desgaste;
+
 
     if (p.vida <= 0) {
-      chispas.splice(i, 1);
+
+
+      chispas.splice(
+        i,
+        1
+      );
+
+
       continue;
+
     }
 
-    fx.globalAlpha = Math.max(0, p.vida);
+
+    fx.globalAlpha =
+      Math.max(
+        0,
+        p.vida
+      );
+
+
     fx.beginPath();
-    fx.arc(p.x, p.y, p.radio, 0, Math.PI * 2);
-    fx.fillStyle = p.color;
+
+
+    fx.arc(
+      p.x,
+      p.y,
+      p.radio,
+      0,
+      Math.PI * 2
+    );
+
+
+    fx.fillStyle =
+      p.color;
+
+
     fx.shadowBlur = 13;
-    fx.shadowColor = p.color;
+
+    fx.shadowColor =
+      p.color;
+
+
     fx.fill();
+
+
     fx.shadowBlur = 0;
+
   }
+
 
   fx.globalAlpha = 1;
-  animacionFuegos = requestAnimationFrame(animarFuegos);
+
+
+  animacionFuegos =
+    requestAnimationFrame(
+      animarFuegos
+    );
+
 }
 
 
-// ==================================
-// ACTIVACION DEL FESTEJO
-// ==================================
+
+// ==========================================
+// ACTIVAR CELEBRACION
+// ==========================================
+
 
 function activarCelebracion() {
-  document.body.classList.add("festejando");
 
-  document.getElementById("celebracion")
-    .classList.add("activa");
 
-  document.getElementById("tablero")
-    .style.boxShadow =
-      "0 0 45px rgba(56,189,248,.8), 0 0 100px rgba(14,165,233,.5)";
+  document.body.classList.add(
+    "festejando"
+  );
+
+
+  document.getElementById(
+    "celebracion"
+  ).classList.add(
+    "activa"
+  );
+
+
+  document.getElementById(
+    "tablero"
+  ).style.boxShadow =
+
+    "0 0 45px rgba(56,189,248,.8), " +
+    "0 0 100px rgba(14,165,233,.5)";
+
 
   if (!movimientoReducido) {
+
+
     ultimoLanzamiento = 0;
-    animacionFuegos = requestAnimationFrame(animarFuegos);
+
+
+    animacionFuegos =
+      requestAnimationFrame(
+        animarFuegos
+      );
+
   }
+
 }
 
 
-// ==================================
+
+// ==========================================
 // INICIO
-// ==================================
+// ==========================================
+
 
 actualizar();
-const intervalo = setInterval(actualizar, 250);
+
+
+const intervalo =
+  setInterval(
+    actualizar,
+    250
+  );
 
 </script>
 
