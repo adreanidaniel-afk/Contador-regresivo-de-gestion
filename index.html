@@ -1,34 +1,54 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
+
 <title>Cuenta regresiva | 2027</title>
 
+
 <style>
+
+/* ==========================================
+   CONFIGURACION GENERAL
+========================================== */
 
 * {
   box-sizing: border-box;
 }
 
+
 body {
+
   margin: 0;
+
   min-height: 100vh;
+
   display: flex;
+
   align-items: center;
+
   justify-content: center;
 
   background:
+
     radial-gradient(
       ellipse at 15% 20%,
       rgba(0,140,255,.24),
       transparent 42%
     ),
+
     radial-gradient(
       ellipse at 85% 80%,
       rgba(0,75,180,.22),
       transparent 45%
     ),
+
     linear-gradient(
       135deg,
       #030712,
@@ -37,23 +57,34 @@ body {
     );
 
   color: white;
+
   font-family: Arial, sans-serif;
+
   text-align: center;
+
   overflow-x: hidden;
+
 }
 
 
 /* ==========================================
-   FONDO DE PARTICULAS
+   PARTICULAS DEL FONDO
 ========================================== */
 
 #particulas {
+
   position: fixed;
+
   inset: 0;
+
   width: 100%;
+
   height: 100%;
+
   z-index: 0;
+
   pointer-events: none;
+
 }
 
 
@@ -62,12 +93,15 @@ body {
 ========================================== */
 
 .contenedor {
+
   position: relative;
+
   z-index: 1;
 
   padding: 45px 20px;
 
   width: calc(100% - 32px);
+
   max-width: 1000px;
 
   margin: 20px;
@@ -79,8 +113,11 @@ body {
   border-radius: 24px;
 
   box-shadow:
+
     0 0 25px rgba(0,153,255,.2),
+
     0 0 65px rgba(0,153,255,.12),
+
     inset 0 0 35px rgba(0,140,255,.08);
 
   backdrop-filter: blur(10px);
@@ -88,19 +125,26 @@ body {
   animation: entrada 1.2s ease-out;
 
   transition: box-shadow .8s ease;
+
 }
 
 
 @keyframes entrada {
 
   from {
+
     opacity: 0;
+
     transform: translateY(18px);
+
   }
 
   to {
+
     opacity: 1;
+
     transform: translateY(0);
+
   }
 
 }
@@ -119,15 +163,18 @@ h1 {
   letter-spacing: 4px;
 
   text-shadow:
+
     0 0 5px #38bdf8,
+
     0 0 15px #0ea5e9,
+
     0 0 35px rgba(14,165,233,.85);
 
 }
 
 
 /* ==========================================
-   RELOJ DE ARENA ANIMADO
+   RELOJ DE ARENA
 ========================================== */
 
 .reloj-arena {
@@ -139,7 +186,9 @@ h1 {
   font-size: .9em;
 
   filter:
+
     drop-shadow(0 0 4px #38bdf8)
+
     drop-shadow(0 0 12px #0ea5e9);
 
   transform-origin: center center;
@@ -147,11 +196,10 @@ h1 {
 }
 
 
-/* Animación del giro */
-
 .reloj-arena.girando {
 
   animation:
+
     giroArena 1.5s ease-in-out;
 
 }
@@ -162,12 +210,10 @@ h1 {
   0% {
 
     transform:
-      rotate(0deg)
-      scale(1);
 
-    filter:
-      drop-shadow(0 0 4px #38bdf8)
-      drop-shadow(0 0 10px #0ea5e9);
+      rotate(0deg)
+
+      scale(1);
 
   }
 
@@ -175,12 +221,10 @@ h1 {
   45% {
 
     transform:
-      rotate(90deg)
-      scale(1.12);
 
-    filter:
-      drop-shadow(0 0 8px #38bdf8)
-      drop-shadow(0 0 22px #0ea5e9);
+      rotate(90deg)
+
+      scale(1.12);
 
   }
 
@@ -188,12 +232,10 @@ h1 {
   100% {
 
     transform:
-      rotate(180deg)
-      scale(1);
 
-    filter:
-      drop-shadow(0 0 5px #38bdf8)
-      drop-shadow(0 0 15px #0ea5e9);
+      rotate(180deg)
+
+      scale(1);
 
   }
 
@@ -214,7 +256,7 @@ h1 {
 
   gap: 10px;
 
-  margin: 22px 0 12px;
+  margin: 22px 0 18px;
 
   color: #4ade80;
 
@@ -225,6 +267,7 @@ h1 {
   letter-spacing: 3px;
 
   text-shadow:
+
     0 0 10px rgba(74,222,128,.45);
 
 }
@@ -241,24 +284,30 @@ h1 {
   background: #22c55e;
 
   box-shadow:
+
     0 0 6px #22c55e,
+
     0 0 15px rgba(34,197,94,.8);
 
-  animation: latidoEstado 1.5s infinite;
+  animation:
+
+    latidoEstado 1.5s infinite;
 
 }
 
 
 @keyframes latidoEstado {
 
-  0%, 100% {
+  0%,100% {
 
     opacity: 1;
 
     transform: scale(1);
 
     box-shadow:
+
       0 0 6px #22c55e,
+
       0 0 15px rgba(34,197,94,.8);
 
   }
@@ -270,7 +319,9 @@ h1 {
     transform: scale(.75);
 
     box-shadow:
+
       0 0 2px #22c55e,
+
       0 0 7px rgba(34,197,94,.4);
 
   }
@@ -279,52 +330,278 @@ h1 {
 
 
 /* ==========================================
-   SUBTITULO
+   BARRA DE PROGRESO TEMPORAL
 ========================================== */
 
-h2 {
+.progreso-contenedor {
 
-  font-weight: normal;
+  width: 100%;
 
-  color: #dbeafe;
+  max-width: 850px;
 
-  letter-spacing: 1px;
-
-  font-size: clamp(17px,3vw,25px);
-
-  opacity: 0;
-
-  animation:
-    aparecerTexto 3s ease-out .8s forwards;
+  margin: 30px auto 5px;
 
 }
 
 
-@keyframes aparecerTexto {
+/* Etiqueta superior */
 
-  0% {
+.progreso-titulo {
 
-    opacity: 0;
+  display: flex;
 
-    transform: translateY(12px);
+  justify-content: space-between;
+
+  align-items: center;
+
+  margin-bottom: 10px;
+
+  padding: 0 4px;
+
+  color: #7dd3fc;
+
+  font-size: 11px;
+
+  letter-spacing: 2px;
+
+  text-transform: uppercase;
+
+}
+
+
+.progreso-porcentaje {
+
+  color: #38bdf8;
+
+  font-size: 14px;
+
+  font-weight: bold;
+
+  text-shadow:
+
+    0 0 8px #38bdf8,
+
+    0 0 15px rgba(14,165,233,.7);
+
+}
+
+
+/* Barra exterior */
+
+.barra {
+
+  position: relative;
+
+  width: 100%;
+
+  height: 24px;
+
+  padding: 3px;
+
+  background:
+
+    rgba(2,12,28,.95);
+
+  border:
+
+    1px solid rgba(56,189,248,.55);
+
+  border-radius: 20px;
+
+  box-shadow:
+
+    inset 0 0 12px rgba(0,0,0,.8),
+
+    0 0 10px rgba(0,153,255,.15);
+
+  overflow: hidden;
+
+}
+
+
+/* Fondo interno */
+
+.barra-fondo {
+
+  position: absolute;
+
+  inset: 3px;
+
+  border-radius: 15px;
+
+  background:
+
+    repeating-linear-gradient(
+
+      90deg,
+
+      rgba(56,189,248,.025) 0px,
+
+      rgba(56,189,248,.025) 8px,
+
+      rgba(56,189,248,.06) 9px,
+
+      rgba(56,189,248,.06) 10px
+
+    );
+
+}
+
+
+/* Parte consumida */
+
+.barra-progreso {
+
+  position: relative;
+
+  height: 100%;
+
+  width: 0%;
+
+  min-width: 0;
+
+  border-radius: 15px;
+
+  background:
+
+    linear-gradient(
+
+      90deg,
+
+      #075985,
+
+      #0ea5e9,
+
+      #38bdf8,
+
+      #67e8f9
+
+    );
+
+  box-shadow:
+
+    0 0 8px #0ea5e9,
+
+    0 0 18px rgba(14,165,233,.75),
+
+    0 0 35px rgba(56,189,248,.45);
+
+  transition:
+
+    width 1s linear;
+
+  overflow: visible;
+
+}
+
+
+/* Brillo que recorre la barra */
+
+.barra-progreso::after {
+
+  content: "";
+
+  position: absolute;
+
+  top: -5px;
+
+  right: -2px;
+
+  width: 8px;
+
+  height: 34px;
+
+  border-radius: 50%;
+
+  background: #ffffff;
+
+  box-shadow:
+
+    0 0 5px #ffffff,
+
+    0 0 12px #38bdf8,
+
+    0 0 25px #0ea5e9,
+
+    0 0 40px #38bdf8;
+
+  animation:
+
+    brilloBarra 1.4s infinite alternate;
+
+}
+
+
+@keyframes brilloBarra {
+
+  from {
+
+    opacity: .65;
+
+    transform: scaleY(.75);
 
   }
 
-  60% {
-
-    opacity: .6;
-
-    transform: translateY(3px);
-
-  }
-
-  100% {
+  to {
 
     opacity: 1;
 
-    transform: translateY(0);
+    transform: scaleY(1.15);
 
   }
+
+}
+
+
+/* Fechas */
+
+.fechas-progreso {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  margin-top: 8px;
+
+  padding: 0 3px;
+
+  color: #64748b;
+
+  font-size: 10px;
+
+  letter-spacing: 1px;
+
+}
+
+
+/* Informacion */
+
+.info-progreso {
+
+  display: flex;
+
+  justify-content: center;
+
+  flex-wrap: wrap;
+
+  gap: 18px;
+
+  margin-top: 12px;
+
+  color: #94a3b8;
+
+  font-size: 11px;
+
+  letter-spacing: 1px;
+
+}
+
+
+.info-progreso strong {
+
+  color: #7dd3fc;
+
+  font-weight: normal;
 
 }
 
@@ -345,7 +622,7 @@ h2 {
 
   flex-wrap: wrap;
 
-  margin-top: 40px;
+  margin-top: 32px;
 
 }
 
@@ -361,13 +638,20 @@ h2 {
   align-items: center;
 
   background:
+
     linear-gradient(
+
       145deg,
+
       rgba(15,45,82,.96),
+
       rgba(5,18,40,.97)
+
     );
 
-  border: 1px solid rgba(56,189,248,.7);
+  border:
+
+    1px solid rgba(56,189,248,.7);
 
   border-radius: 16px;
 
@@ -376,19 +660,26 @@ h2 {
   min-width: 120px;
 
   box-shadow:
+
     0 0 12px rgba(0,153,255,.22),
+
     0 0 28px rgba(0,153,255,.12),
+
     inset 0 0 18px rgba(56,189,248,.09);
 
   transition:
+
     box-shadow .3s ease,
+
     border-color .3s ease,
+
     transform .3s ease;
 
 }
 
 
 .unidad:hover,
+
 .unidad:active {
 
   border-color: #7dd3fc;
@@ -421,8 +712,11 @@ h2 {
   color: #f0f9ff;
 
   text-shadow:
+
     0 0 6px #fff,
+
     0 0 16px #38bdf8,
+
     0 0 32px rgba(56,189,248,.8);
 
   font-variant-numeric: tabular-nums;
@@ -433,12 +727,13 @@ h2 {
 
 
 /* ==========================================
-   PULSO DE LOS SEGUNDOS
+   PULSO SEGUNDOS
 ========================================== */
 
 .pulso {
 
   animation:
+
     pulsoDigital .35s ease-out;
 
 }
@@ -461,8 +756,11 @@ h2 {
     opacity: 1;
 
     text-shadow:
+
       0 0 12px #fff,
+
       0 0 30px #38bdf8,
+
       0 0 48px #0ea5e9;
 
   }
@@ -493,20 +791,21 @@ h2 {
   letter-spacing: 2px;
 
   text-shadow:
+
     0 0 10px rgba(56,189,248,.5);
 
 }
 
 
 /* ==========================================
-   MENSAJE
+   MENSAJE INFERIOR
 ========================================== */
 
 #mensaje {
 
   color: #94a3b8;
 
-  margin-top: 38px;
+  margin-top: 30px;
 
   letter-spacing: 1px;
 
@@ -557,7 +856,7 @@ body.festejando #fuegos {
 
 
 /* ==========================================
-   PANTALLA DE CELEBRACION
+   CELEBRACION
 ========================================== */
 
 .celebracion {
@@ -578,11 +877,14 @@ body.festejando #fuegos {
 
   padding: 24px;
 
-  background: rgba(2,8,23,.70);
+  background:
+
+    rgba(2,8,23,.70);
 
   backdrop-filter: blur(5px);
 
   animation:
+
     aparecerFestejo 1.2s ease forwards;
 
 }
@@ -624,11 +926,15 @@ body.festejando #fuegos {
 
   padding: 40px 20px;
 
-  border: 1px solid #38bdf8;
+  border:
+
+    1px solid #38bdf8;
 
   border-radius: 24px;
 
-  background: rgba(5,20,48,.94);
+  background:
+
+    rgba(5,20,48,.94);
 
   box-shadow:
 
@@ -639,6 +945,7 @@ body.festejando #fuegos {
     inset 0 0 40px rgba(56,189,248,.10);
 
   animation:
+
     brilloFinal 2s infinite alternate;
 
 }
@@ -694,6 +1001,7 @@ body.festejando #fuegos {
     0 0 45px #0ea5e9;
 
   animation:
+
     latidoFinal 1.4s infinite;
 
 }
@@ -727,6 +1035,7 @@ body.festejando #fuegos {
   margin-top: 22px;
 
   text-shadow:
+
     0 0 15px #0ea5e9;
 
 }
@@ -756,6 +1065,7 @@ body.festejando #fuegos {
   margin-top: 30px;
 
   text-shadow:
+
     0 0 12px #22c55e;
 
 }
@@ -766,6 +1076,7 @@ body.festejando #fuegos {
 ========================================== */
 
 @media (max-width: 600px) {
+
 
   .contenedor {
 
@@ -780,7 +1091,7 @@ body.festejando #fuegos {
 
     gap: 8px;
 
-    margin-top: 30px;
+    margin-top: 28px;
 
   }
 
@@ -810,6 +1121,45 @@ body.festejando #fuegos {
   }
 
 
+  .progreso-titulo {
+
+    font-size: 9px;
+
+    letter-spacing: 1px;
+
+  }
+
+
+  .progreso-porcentaje {
+
+    font-size: 12px;
+
+  }
+
+
+  .barra {
+
+    height: 20px;
+
+  }
+
+
+  .fechas-progreso {
+
+    font-size: 8px;
+
+  }
+
+
+  .info-progreso {
+
+    gap: 10px;
+
+    font-size: 9px;
+
+  }
+
+
   .pie {
 
     font-size: 9px;
@@ -835,10 +1185,16 @@ body.festejando #fuegos {
 @media (prefers-reduced-motion: reduce) {
 
   .punto-activo,
+
   .pulso,
+
   .titulo-final,
+
   .panel-festejo,
-  .reloj-arena {
+
+  .reloj-arena,
+
+  .barra-progreso::after {
 
     animation: none !important;
 
@@ -855,7 +1211,7 @@ body.festejando #fuegos {
 
 
 <!-- ======================================
-     FONDO
+     PARTICULAS
 ====================================== -->
 
 <canvas id="particulas"></canvas>
@@ -865,7 +1221,10 @@ body.festejando #fuegos {
      TABLERO
 ====================================== -->
 
-<main class="contenedor" id="tablero">
+<main
+  class="contenedor"
+  id="tablero"
+>
 
 
   <h1>
@@ -889,10 +1248,79 @@ body.festejando #fuegos {
   </div>
 
 
-  <h2>
-    Hasta el 1 de mayo de 2027
-  </h2>
+  <!-- ====================================
+       BARRA DE PROGRESO TEMPORAL
+  ===================================== -->
 
+  <div class="progreso-contenedor">
+
+
+    <div class="progreso-titulo">
+
+      <span>
+        PROGRESO TEMPORAL
+      </span>
+
+      <span
+        class="progreso-porcentaje"
+        id="porcentaje"
+      >
+        0.00%
+      </span>
+
+    </div>
+
+
+    <div class="barra">
+
+      <div class="barra-fondo"></div>
+
+      <div
+        class="barra-progreso"
+        id="barraProgreso"
+      ></div>
+
+    </div>
+
+
+    <div class="fechas-progreso">
+
+      <span>
+        01 MAY 2021
+      </span>
+
+      <span>
+        01 MAY 2027
+      </span>
+
+    </div>
+
+
+    <div class="info-progreso">
+
+      <span>
+        TRANSCURRIDO:
+        <strong id="tiempoTranscurrido">
+          0%
+        </strong>
+      </span>
+
+      <span>
+        RESTANTE:
+        <strong id="diasRestantes">
+          0 DÍAS
+        </strong>
+      </span>
+
+    </div>
+
+
+  </div>
+
+
+  <!-- ====================================
+       CONTADOR
+  ===================================== -->
 
   <div class="reloj">
 
@@ -902,7 +1330,9 @@ body.festejando #fuegos {
       <div
         class="numero"
         id="dias"
-      >000</div>
+      >
+        000
+      </div>
 
       <div class="etiqueta">
         DÍAS
@@ -916,7 +1346,9 @@ body.festejando #fuegos {
       <div
         class="numero"
         id="horas"
-      >00</div>
+      >
+        00
+      </div>
 
       <div class="etiqueta">
         HORAS
@@ -930,7 +1362,9 @@ body.festejando #fuegos {
       <div
         class="numero"
         id="minutos"
-      >00</div>
+      >
+        00
+      </div>
 
       <div class="etiqueta">
         MINUTOS
@@ -944,7 +1378,9 @@ body.festejando #fuegos {
       <div
         class="numero"
         id="segundos"
-      >00</div>
+      >
+        00
+      </div>
 
       <div class="etiqueta">
         SEGUNDOS
@@ -1029,25 +1465,64 @@ body.festejando #fuegos {
 
 
 // ==========================================
-// CONTADOR REGRESIVO
+// FECHAS DEL PROYECTO
 // ==========================================
 
 
+// Inicio del período:
+// 1 de mayo de 2021 a las 00:00
+// hora de Argentina.
+
+const inicioPeriodo =
+  Date.UTC(
+    2021,
+    4,
+    1,
+    3,
+    0,
+    0
+  );
+
+
+// Final del período:
 // 1 de mayo de 2027 a las 00:00
-// hora de Argentina (UTC-3).
+// hora de Argentina.
 
 const objetivo =
-  Date.UTC(2027, 4, 1, 3, 0, 0);
+  Date.UTC(
+    2027,
+    4,
+    1,
+    3,
+    0,
+    0
+  );
 
 
-let festejoIniciado = false;
+const duracionTotal =
+  objetivo -
+  inicioPeriodo;
 
+
+let festejoIniciado =
+  false;
+
+
+
+// ==========================================
+// CONTADOR Y BARRA
+// ==========================================
 
 function actualizar() {
 
 
-  const ahora = Date.now();
+  const ahora =
+    Date.now();
 
+
+  // ----------------------------------------
+  // CUENTA REGRESIVA
+  // ----------------------------------------
 
   const restante =
     Math.max(
@@ -1058,46 +1533,67 @@ function actualizar() {
 
   const dias =
     Math.floor(
-      restante / 86400000
+      restante /
+      86400000
     );
 
 
   const horas =
     Math.floor(
-      (restante % 86400000) /
+      (
+        restante %
+        86400000
+      ) /
       3600000
     );
 
 
   const minutos =
     Math.floor(
-      (restante % 3600000) /
+      (
+        restante %
+        3600000
+      ) /
       60000
     );
 
 
   const segundos =
     Math.floor(
-      (restante % 60000) /
+      (
+        restante %
+        60000
+      ) /
       1000
     );
 
 
   document.getElementById(
     "dias"
-  ).textContent = dias;
+  ).textContent =
+    dias;
 
 
   document.getElementById(
     "horas"
   ).textContent =
-    String(horas).padStart(2, "0");
+    String(
+      horas
+    ).padStart(
+      2,
+      "0"
+    );
 
 
   document.getElementById(
     "minutos"
   ).textContent =
-    String(minutos).padStart(2, "0");
+    String(
+      minutos
+    ).padStart(
+      2,
+      "0"
+    );
 
 
   const elementoSegundos =
@@ -1107,7 +1603,12 @@ function actualizar() {
 
 
   const nuevoSegundo =
-    String(segundos).padStart(2, "0");
+    String(
+      segundos
+    ).padStart(
+      2,
+      "0"
+    );
 
 
   if (
@@ -1135,7 +1636,77 @@ function actualizar() {
   }
 
 
-  if (restante <= 0) {
+
+  // ----------------------------------------
+  // PROGRESO TEMPORAL
+  // ----------------------------------------
+
+  let progreso =
+    (
+      (ahora - inicioPeriodo) /
+      duracionTotal
+    ) * 100;
+
+
+  // Limitamos entre 0 y 100
+
+  progreso =
+    Math.min(
+      100,
+      Math.max(
+        0,
+        progreso
+      )
+    );
+
+
+  // Barra
+
+  document.getElementById(
+    "barraProgreso"
+  ).style.width =
+    progreso + "%";
+
+
+  // Porcentaje
+
+  document.getElementById(
+    "porcentaje"
+  ).textContent =
+    progreso.toFixed(
+      2
+    ) + "%";
+
+
+  document.getElementById(
+    "tiempoTranscurrido"
+  ).textContent =
+    progreso.toFixed(
+      2
+    ) + "%";
+
+
+  // Días restantes
+
+  document.getElementById(
+    "diasRestantes"
+  ).textContent =
+    dias +
+    (
+      dias === 1
+        ? " DÍA"
+        : " DÍAS"
+    );
+
+
+
+  // ----------------------------------------
+  // FINAL
+  // ----------------------------------------
+
+  if (
+    restante <= 0
+  ) {
 
 
     document.getElementById(
@@ -1144,16 +1715,23 @@ function actualizar() {
       "¡OBJETIVO ALCANZADO!";
 
 
-    if (!festejoIniciado) {
+    if (
+      !festejoIniciado
+    ) {
 
-      festejoIniciado = true;
+
+      festejoIniciado =
+        true;
+
 
       activarCelebracion();
 
     }
 
 
-    clearInterval(intervalo);
+    clearInterval(
+      intervalo
+    );
 
   }
 
@@ -1162,9 +1740,8 @@ function actualizar() {
 
 
 // ==========================================
-// ANIMACION DEL RELOJ DE ARENA
+// RELOJ DE ARENA
 // ==========================================
-
 
 const relojArena =
   document.getElementById(
@@ -1172,7 +1749,8 @@ const relojArena =
   );
 
 
-let arenaArriba = true;
+let arenaArriba =
+  true;
 
 
 function girarRelojArena() {
@@ -1183,7 +1761,6 @@ function girarRelojArena() {
   );
 
 
-  // Reinicia la animación CSS
   void relojArena.offsetWidth;
 
 
@@ -1192,29 +1769,35 @@ function girarRelojArena() {
   );
 
 
-  setTimeout(() => {
+  setTimeout(
+    () => {
 
 
-    if (arenaArriba) {
+      if (
+        arenaArriba
+      ) {
 
-      relojArena.textContent = "⌛";
+        relojArena.textContent =
+          "⌛";
 
-    } else {
+      } else {
 
-      relojArena.textContent = "⏳";
+        relojArena.textContent =
+          "⏳";
 
-    }
-
-
-    arenaArriba = !arenaArriba;
+      }
 
 
-  }, 750);
+      arenaArriba =
+        !arenaArriba;
+
+
+    },
+    750
+  );
 
 }
 
-
-// El reloj gira cada 6 segundos.
 
 setInterval(
   girarRelojArena,
@@ -1224,9 +1807,8 @@ setInterval(
 
 
 // ==========================================
-// PARTICULAS DEL FONDO
+// PARTICULAS
 // ==========================================
-
 
 const canvas =
   document.getElementById(
@@ -1235,10 +1817,13 @@ const canvas =
 
 
 const ctx =
-  canvas.getContext("2d");
+  canvas.getContext(
+    "2d"
+  );
 
 
 let ancho;
+
 let alto;
 
 let particulas = [];
@@ -1297,7 +1882,11 @@ function ajustarCanvas() {
 
   particulas =
     Array.from(
-      { length: cantidad },
+      {
+        length:
+          cantidad
+      },
+
       () => ({
 
         x:
@@ -1339,7 +1928,8 @@ function dibujarParticulas() {
 
 
   const tiempo =
-    Date.now() * .001;
+    Date.now() *
+    .001;
 
 
   for (
@@ -1359,14 +1949,19 @@ function dibujarParticulas() {
 
     p.x +=
       Math.sin(
-        tiempo + p.fase
+        tiempo +
+        p.fase
       ) * .18;
 
 
-    if (p.y < -5) {
+    if (
+      p.y < -5
+    ) {
+
 
       p.y =
         alto + 5;
+
 
       p.x =
         Math.random() *
@@ -1375,12 +1970,18 @@ function dibujarParticulas() {
     }
 
 
-    if (p.x < 0)
-      p.x = ancho;
+    if (
+      p.x < 0
+    )
+      p.x =
+        ancho;
 
 
-    if (p.x > ancho)
-      p.x = 0;
+    if (
+      p.x > ancho
+    )
+      p.x =
+        0;
 
 
     const brillo =
@@ -1410,7 +2011,9 @@ function dibujarParticulas() {
       `rgba(56,189,248,${brillo})`;
 
 
-    ctx.shadowBlur = 9;
+    ctx.shadowBlur =
+      9;
+
 
     ctx.shadowColor =
       "#0ea5e9";
@@ -1419,10 +2022,9 @@ function dibujarParticulas() {
     ctx.fill();
 
 
-    ctx.shadowBlur = 0;
+    ctx.shadowBlur =
+      0;
 
-
-    // Conexiones entre partículas
 
     for (
       let j = i + 1;
@@ -1450,7 +2052,9 @@ function dibujarParticulas() {
         );
 
 
-      if (distancia < 105) {
+      if (
+        distancia < 105
+      ) {
 
 
         ctx.beginPath();
@@ -1471,11 +2075,16 @@ function dibujarParticulas() {
         ctx.strokeStyle =
           `rgba(56,189,248,${
             .10 *
-            (1 - distancia / 105)
+            (
+              1 -
+              distancia /
+              105
+            )
           })`;
 
 
-        ctx.lineWidth = .6;
+        ctx.lineWidth =
+          .6;
 
 
         ctx.stroke();
@@ -1497,7 +2106,9 @@ function dibujarParticulas() {
 ajustarCanvas();
 
 
-if (!movimientoReducido) {
+if (
+  !movimientoReducido
+) {
 
   dibujarParticulas();
 
@@ -1512,9 +2123,8 @@ window.addEventListener(
 
 
 // ==========================================
-// FUEGOS ARTIFICIALES TECNOLOGICOS
+// FUEGOS ARTIFICIALES
 // ==========================================
-
 
 const canvasFuegos =
   document.getElementById(
@@ -1529,15 +2139,15 @@ const fx =
 
 
 let fwAncho;
+
 let fwAlto;
 
 let cohetes = [];
 
 let chispas = [];
 
-let ultimoLanzamiento = 0;
-
-let animacionFuegos = null;
+let ultimoLanzamiento =
+  0;
 
 
 const colores = [
@@ -1612,33 +2222,44 @@ function lanzarCohete() {
 
   const x =
     fwAncho *
-    (.12 +
+    (
+      .12 +
       Math.random() *
-      .76);
+      .76
+    );
 
 
   const y =
     fwAlto *
-    (.12 +
+    (
+      .12 +
       Math.random() *
-      .40);
+      .40
+    );
 
 
   const inicioX =
     x +
-    (Math.random() - .5) *
+    (
+      Math.random() -
+      .5
+    ) *
     150;
 
 
   cohetes.push({
 
-    x: inicioX,
+    x:
+      inicioX,
 
-    y: fwAlto + 10,
+    y:
+      fwAlto + 10,
 
-    destinoX: x,
+    destinoX:
+      x,
 
-    destinoY: y,
+    destinoY:
+      y,
 
     velocidad:
       5 +
@@ -1668,7 +2289,8 @@ function explotar(
   const cantidadChispas =
     55 +
     Math.floor(
-      Math.random() * 45
+      Math.random() *
+      45
     );
 
 
@@ -1686,31 +2308,42 @@ function explotar(
 
     const velocidad =
       1 +
-      Math.random() * 5;
+      Math.random() *
+      5;
 
 
     chispas.push({
 
-      x,
-      y,
+      x:
+        x,
+
+      y:
+        y,
 
       vx:
-        Math.cos(angulo) *
+        Math.cos(
+          angulo
+        ) *
         velocidad,
 
       vy:
-        Math.sin(angulo) *
+        Math.sin(
+          angulo
+        ) *
         velocidad,
 
-      vida: 1,
+      vida:
+        1,
 
       desgaste:
         .008 +
-        Math.random() * .013,
+        Math.random() *
+        .013,
 
       radio:
         1 +
-        Math.random() * 2.3,
+        Math.random() *
+        2.3,
 
       color:
         Math.random() < .75
@@ -1759,12 +2392,12 @@ function animarFuegos(
   }
 
 
-  // Movimiento de cohetes
-
   for (
     let i =
       cohetes.length - 1;
+
     i >= 0;
+
     i--
   ) {
 
@@ -1815,12 +2448,14 @@ function animarFuegos(
 
 
     c.x +=
-      dx / distancia *
+      dx /
+      distancia *
       c.velocidad;
 
 
     c.y +=
-      dy / distancia *
+      dy /
+      distancia *
       c.velocidad;
 
 
@@ -1840,7 +2475,9 @@ function animarFuegos(
       c.color;
 
 
-    fx.shadowBlur = 15;
+    fx.shadowBlur =
+      15;
+
 
     fx.shadowColor =
       c.color;
@@ -1849,17 +2486,18 @@ function animarFuegos(
     fx.fill();
 
 
-    fx.shadowBlur = 0;
+    fx.shadowBlur =
+      0;
 
   }
 
 
-  // Partículas de explosiones
-
   for (
     let i =
       chispas.length - 1;
+
     i >= 0;
+
     i--
   ) {
 
@@ -1876,19 +2514,25 @@ function animarFuegos(
       p.vy;
 
 
-    p.vy += .025;
+    p.vy +=
+      .025;
 
 
-    p.vx *= .99;
+    p.vx *=
+      .99;
 
-    p.vy *= .99;
+
+    p.vy *=
+      .99;
 
 
     p.vida -=
       p.desgaste;
 
 
-    if (p.vida <= 0) {
+    if (
+      p.vida <= 0
+    ) {
 
 
       chispas.splice(
@@ -1925,7 +2569,9 @@ function animarFuegos(
       p.color;
 
 
-    fx.shadowBlur = 13;
+    fx.shadowBlur =
+      13;
+
 
     fx.shadowColor =
       p.color;
@@ -1934,27 +2580,27 @@ function animarFuegos(
     fx.fill();
 
 
-    fx.shadowBlur = 0;
+    fx.shadowBlur =
+      0;
 
   }
 
 
-  fx.globalAlpha = 1;
+  fx.globalAlpha =
+    1;
 
 
-  animacionFuegos =
-    requestAnimationFrame(
-      animarFuegos
-    );
+  requestAnimationFrame(
+    animarFuegos
+  );
 
 }
 
 
 
 // ==========================================
-// ACTIVAR CELEBRACION
+// CELEBRACION FINAL
 // ==========================================
-
 
 function activarCelebracion() {
 
@@ -1975,20 +2621,23 @@ function activarCelebracion() {
     "tablero"
   ).style.boxShadow =
 
-    "0 0 45px rgba(56,189,248,.8), " +
+    "0 0 45px rgba(56,189,248,.8)," +
+
     "0 0 100px rgba(14,165,233,.5)";
 
 
-  if (!movimientoReducido) {
+  if (
+    !movimientoReducido
+  ) {
 
 
-    ultimoLanzamiento = 0;
+    ultimoLanzamiento =
+      0;
 
 
-    animacionFuegos =
-      requestAnimationFrame(
-        animarFuegos
-      );
+    requestAnimationFrame(
+      animarFuegos
+    );
 
   }
 
@@ -2000,7 +2649,6 @@ function activarCelebracion() {
 // INICIO
 // ==========================================
 
-
 actualizar();
 
 
@@ -2009,6 +2657,7 @@ const intervalo =
     actualizar,
     250
   );
+
 
 </script>
 
